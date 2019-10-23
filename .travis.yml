@@ -6,7 +6,7 @@ services:
     - docker build -t aykutkaragoz/react-test -f ./client/Dockerfile.dev ./client
 
   script:
-    - docker run -e CI=true aykutkaragoz/react-test npm test -- --covarage  
+    - docker run -e CI=true aykutkaragoz/react-test npm test -- --coverage  
 
   after-success:
     - docker build -t aykutkaragoz/multi-client ./client  
@@ -14,7 +14,7 @@ services:
     - docker build -t aykutkaragoz/multi-server ./server  
     - docker build -t aykutkaragoz/multi-worker ./worker  
 
-    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password -stdin
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password -stdin
 
     - docker push aykutkaragoz/multi-client 
     - docker push aykutkaragoz/multi-nginx
