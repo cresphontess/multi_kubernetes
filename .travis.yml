@@ -3,10 +3,10 @@ services:
   - docker
 
   before-install: 
-    - docker build -e CI=true aykutkaragoz/react-test ./client/Dockerfile.dev ./client
+    - docker build aykutkaragoz/react-test ./client/Dockerfile.dev ./client
 
   script:
-    - docker run aykutkaragoz/react-test npm test -- --covarage  
+    - docker run -e CI=true aykutkaragoz/react-test npm test -- --covarage  
 
   after-success:
     - docker build aykutkaragoz/multi-client ./client  
