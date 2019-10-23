@@ -19,5 +19,5 @@ services:
     - docker push aykutkaragoz/multi-client 
     - docker push aykutkaragoz/multi-nginx
     - docker push aykutkaragoz/multi-server
-    - docker push aykutkaragoz/multi-worker
+    - docker push aykutkaragoz/multi-worker 
   
