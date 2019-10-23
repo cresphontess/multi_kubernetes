@@ -1,0 +1,23 @@
+sudo : required
+services: 
+  - docker
+
+  before-install: 
+    - docker build -e CI=true aykutkaragoz/react-test ./client/Dockerfile.dev ./client
+
+  script:
+    - docker run aykutkaragoz/react-test npm test -- --covarage  
+
+  after-success:
+    - docker build aykutkaragoz/multi-client ./client  
+    - docker build aykutkaragoz/multi-nginx ./nginx  
+    - docker build aykutkaragoz/multi-server ./server  
+    - docker build aykutkaragoz/multi-worker ./worker  
+
+    echo "DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password -stdin
+
+    - docker push aykutkaragoz/multi-client 
+    - docker push aykutkaragoz/multi-nginx
+    - docker push aykutkaragoz/multi-server
+    - docker push aykutkaragoz/multi-worker
+  
