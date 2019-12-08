@@ -13,5 +13,5 @@ docker push cresphontes/multi-worker:$SHA
 kubectl apply -f k8s
 
 kubectl set image deployments/server-deployment server=cresphontes/multi-server:$SHA
-kubectl set image deployments/client-deployment server=cresphontes/multi-client:$SHA
-kubectl set image deployments/worker-deployment server=cresphontes/multi-worker:$SHA
+kubectl set image deployments/client-deployment client=cresphontes/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=cresphontes/multi-worker:$SHA
